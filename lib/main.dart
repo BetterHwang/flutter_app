@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'model/manager/ui_notification.dart';
 import 'model/manager/ui_manager.dart';
-import 'main_tab_view/main_tab_view.dart';
-import 'welcome_page/WelcomePage.dart';
+import 'view/main_tab_view/main_tab_view.dart';
+import 'view/welcome_page/WelcomePage.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();

@@ -7,18 +7,6 @@ class UiManager {
   static Future<bool> isFirstRun() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     return prefs.getBool(Key_FristRun);
-    // var _isFirstRun;
-    // keys.then((value) => {
-    //
-    // });
-    // if (prefs.getKeys().contains(Key_FristRun)) {
-    //   _isFirstRun = false;
-    // }else {
-    //   _isFirstRun = true;
-    // }
-    // if (null != callback) {
-    //   callback(_isFirstRun);
-    // }
   }
 
   static void setFirstRun(bool isFirstRun) async {

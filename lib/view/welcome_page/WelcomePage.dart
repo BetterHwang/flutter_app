@@ -13,8 +13,47 @@ class WelcomePage extends StatefulWidget {
 class _WelcomePageState extends State<WelcomePage> {
   PageController pageController;
 
-  void _onPressLastPage() {
+  void _closeWelcomePage() {
     UiNotification("Close_Welcome_Page", 0).dispatch(context);
+  }
+
+  void _onPressLastPage() {
+    this._showMyDialog();
+  }
+
+  Future<void> _showMyDialog() async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false, // user must tap button!
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('AlertDialog Title'),
+          content: SingleChildScrollView(
+            child: ListBody(
+              children: <Widget>[
+                Text('This is a demo alert dialog.'),
+                Text('Would you like to approve of this message?'),
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            TextButton(
+              child: Text('确定'),
+              onPressed: () {
+                Navigator.of(context).pop();
+                _closeWelcomePage();
+              },
+            ),
+            TextButton(
+              child: Text('取消'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
   }
 
   @override

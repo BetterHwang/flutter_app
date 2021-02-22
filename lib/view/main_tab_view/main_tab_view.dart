@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/first_page/first_page.dart';
+import 'package:flutter_app/view/first_page/first_page.dart';
+import 'package:flutter_app/view/message_page/message_page.dart';
 
 class MainTabView extends StatefulWidget {
   MainTabView();
@@ -23,7 +24,29 @@ class _MainTabViewState extends State<MainTabView> with SingleTickerProviderStat
     super.dispose();
   }
 
-  final pages = [FirstPage(), FirstPage(), FirstPage(), FirstPage()];
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    return Scaffold(
+      // appBar: AppBar(
+      //   title: Text("Using Bottom Navigation Bar"),
+      //   backgroundColor: Theme.of(context).accentColor,
+      // ),
+      body: pages[_selectIndex],
+      // Set the bottom navigation bar
+      bottomNavigationBar: BottomNavigationBar(
+        // set the tab bar as the child of bottom navigation bar
+        items: bottomNavItems,
+        currentIndex: _selectIndex,
+        type: BottomNavigationBarType.fixed,
+        onTap: (index) {
+          _changePage(index);
+        },
+      ),
+    );
+  }
+
+  final pages = [FirstPage(), MessagePage(), FirstPage(), FirstPage()];
   final List<BottomNavigationBarItem> bottomNavItems = [
     BottomNavigationBarItem(
       backgroundColor: Colors.blue,
@@ -50,28 +73,6 @@ class _MainTabViewState extends State<MainTabView> with SingleTickerProviderStat
       activeIcon: Icon(Icons.person_outlined),
     ),
   ];
-
-  @override
-  Widget build(BuildContext context) {
-    // TODO: implement build
-    return Scaffold(
-      // appBar: AppBar(
-      //   title: Text("Using Bottom Navigation Bar"),
-      //   backgroundColor: Theme.of(context).accentColor,
-      // ),
-      body: pages[_selectIndex],
-      // Set the bottom navigation bar
-      bottomNavigationBar: BottomNavigationBar(
-        // set the tab bar as the child of bottom navigation bar
-        items: bottomNavItems,
-        currentIndex: _selectIndex,
-        type: BottomNavigationBarType.fixed,
-        onTap: (index) {
-          _changePage(index);
-        },
-      ),
-    );
-  }
 
   _changePage(int index) {
     if (index != _selectIndex) {
